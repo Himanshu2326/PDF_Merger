@@ -31,7 +31,8 @@ app.post('/merge', upload.array('pdfs', 2), async (req, res) => {
    let d = await MergePDF(path.join(__dirname, req.files[0].path), path.join(__dirname, req.files[1].path));
 
    // res.send('Merge Sucessfull')
-   res.redirect(`http://localhost:1000/static/${d}.pdf`);
+   res.redirect(`https://pdflare.onrender.com/static/${d}.pdf`);
+   console.log('Succesfully Merged ');
 
 
    setTimeout(() => {
