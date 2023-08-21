@@ -8,7 +8,7 @@ const path = require('path')
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const { MergePDF } = require('./Merger');
-const Port = 1000;
+const Port = process.env.PORT || 1000;
 
 const UploadFiles = "uploads";
 const PdfFiles = "Public";
@@ -31,7 +31,7 @@ app.post('/merge', upload.array('pdfs', 2), async (req, res) => {
    let d = await MergePDF(path.join(__dirname, req.files[0].path), path.join(__dirname, req.files[1].path));
 
    // res.send('Merge Sucessfull')
-   res.redirect(`https://pdflare.onrender.com/static/${d}.pdf`);
+   res.redirect(`https://pdflare.onrender.com/${d}.pdf`);
    console.log('Succesfully Merged ');
 
 
